@@ -23,4 +23,5 @@ router
 
 router.route('/:id/subcategories/:subcategory_id/products').get(productsController.getProductsBySubcategory);
 
+
 module.exports = router;

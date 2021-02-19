@@ -70,8 +70,8 @@ const remove = (id) => {
   });
 };
 
-const getBySubcategory = async (product) => {
-  let query = { product: product };
+const getBySubcategory = async (product_subcategory_id) => {
+  let query = { product_subcategory_id: product_subcategory_id };
   return await Product.find(query);
 }
 

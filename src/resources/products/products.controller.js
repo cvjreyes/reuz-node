@@ -7,7 +7,7 @@ const getAll = async (req, res) => {
 
   const getProductsBySubcategory = async (req, res) => {
 
-    const subcategories_id = req.params.subcategories_id;
+    const subcategories_id = req.params.subcategory_id;
     const filteredProducts = await productModel.getBySubcategory(subcategories_id);
     return res.status(200).json(filteredProducts);
   
