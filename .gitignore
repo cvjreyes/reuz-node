@@ -22,5 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
+=======
+# ignore environments
+>>>>>>> 1738fcdb3eded1d37a774d4a461523ded2aa1b2e
 .env.dev
 .env
