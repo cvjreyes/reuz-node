@@ -18,6 +18,16 @@
     "phone": 603384130,
     "address": "Dirección Local2",
     "postalcode":"089233"
+  },
+  {
+    "email":"federico@gmail.com",
+    "password":"123456",
+    "urlImage": "",
+    "lastname": "Tiralongo",
+    "name": "Federico",
+    "phone": 603384130,
+    "address": "Dirección Local2",
+    "postalcode":"089233"
 }
 
 ]
