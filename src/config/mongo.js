@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 dotenv.config();
 mongoose.set('debug', process.env.NODE_ENV === 'development');
 const options = {useNewUrlParser: true, useUnifiedTopology: true}
-const mongo = mongoose.connect(process.env.DB_CONN_STR, options);
+const mongo = mongoose.connect("mongodb+srv://reuzdb:reuzdb@cluster0.mifjf.mongodb.net/reuzdb?retryWrites=true&w=majority", options);
 
 mongo.then(() => {
     console.log(`Mongoose default connection open to ${process.env.DB_CONN_STR}`);

@@ -1,5 +1,3 @@
-
-
 const productModel = require('./products.model');
 
 const getAll = async (req, res) => {
