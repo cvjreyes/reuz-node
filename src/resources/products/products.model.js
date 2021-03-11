@@ -91,10 +91,15 @@ const getByUser = async (users_id) => {
   return await Product.find(query);
 }
 
-const getByName = async (name) => {
-  let query = { $name:{
-    $text: name
-  } }
+const getByName = async (name, description) => {
+  const regexName = new RegExp(name, 'i');
+  const regexDescription = new RegExp(description, 'i');
+  let query = {
+    $or: [
+      { name: { $regex: regexName } },
+      { description: { $regex: regexDescription } }
+    ]
+  }
   return await Product.find(query)
 }
 

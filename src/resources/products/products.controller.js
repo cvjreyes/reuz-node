@@ -23,9 +23,10 @@ const getProductsByUser = async (req, res) => {
   return res.status(200).json(filteredProducts);
 };
 
-const getProductsByName = async (req, res) => {
-  const name = req.query.name;
-  const filteredProducts = await productModel.getByName(name);
+const searchProducts = async (req, res) => {
+  const name = req.body.name;
+  const description = req.body.description
+  const filteredProducts = await productModel.getByName(name, description);
   return res.status(200).json(filteredProducts);
 };
 
@@ -53,12 +54,6 @@ const create = (req, res) => {
   }
 };
 
-/*   const create = (req, res) => {
-    const newproduct = req.body;
-    const productsUpdated = productModel.create(newproduct);
-    return res.status(201).json(productsUpdated);
-  }; */
-
 const update = (req, res) => {
   const creationDate = new Date();
   const updatedproduct = { ...req.body, updated_at: creationDate };
@@ -78,7 +73,7 @@ module.exports = {
   getProductsByCategory,
   getProductsBySubcategory,
   getProductsByUser,
-  getProductsByName,
+  searchProducts,
   getOne,
   remove,
 };

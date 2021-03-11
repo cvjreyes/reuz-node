@@ -12,7 +12,7 @@ router.route('/:id')
   .delete(productsController.remove);
 
 router.route('/search')
-  .get(productsController.getProductsByName)
+  .post(productsController.searchProducts)
 
 
 module.exports = router;

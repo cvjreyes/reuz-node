@@ -33,7 +33,6 @@ app.use('/api/products', productsRouter);
 app.use('/api/tags', tagsRouter);
 app.use('/api/users', usersRouter);
 
-
 app.get('/protected', jwt( { secret: process.env.TOKEN_SECRET, algorithms: ['HS256'] } ), (req, res) => {
   res.send('protected');
 });
