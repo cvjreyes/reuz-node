@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 // Define model schema
 const productModelSchema = mongoose.Schema({
+<<<<<<< HEAD
     name: String,
     description: String,
     urlImage:String,
@@ -15,23 +16,38 @@ const productModelSchema = mongoose.Schema({
     status:String,
     tags_id: [
       {
+=======
+  name: String,
+  description: String,
+  urlImage: String,
+  photos: mongoose.Schema.Types.Array,
+  created_at: mongoose.Schema.Types.Date,
+  updated_at: mongoose.Schema.Types.Date,
+  price: Number,
+  discount: Number,
+  address: String,
+  postalcode: String,
+  status: String,
+  tags_id: [
+    {
+>>>>>>> a995e85c1a2800bb01d04a559c56c833e67f91be
       type: mongoose.Schema.Types.ObjectId,
       ref: 'TagModel',
-      }
-    ],
-    users_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'UserModel',
-    },
-    product_category_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'CategoryModel',
-    },
-    product_subcategory_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'SubcategoryModel',
-    },
-  });
+    }
+  ],
+  users_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserModel',
+  },
+  product_category_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'CategoryModel',
+  },
+  product_subcategory_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'SubcategoryModel',
+  },
+});
 
 // Compile model from schema
 const Product = mongoose.model('ProductModel', productModelSchema);
@@ -52,7 +68,10 @@ const getAll = async () => {
 
 const getOne = async (id) => {
   let query = { _id: id };
-  return await Product.findOne(query);
+  return await Product.findOne(query)
+    .populate('users_id')
+    .populate('product_category_id')
+    .populate('product_subcategory_id');
 };
 
 const update = (id, updatedproduct) => {

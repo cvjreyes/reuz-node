@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Define model schema
 const photoModelSchema = mongoose.Schema({
-    name: String,
+    photoArray: mongoose.Schema.Types.Array,
     photo_product_id: [
       {
       type: mongoose.Schema.Types.ObjectId,
