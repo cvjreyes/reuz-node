@@ -58,6 +58,7 @@ const create = (product) => {
       console.log(err);
     } else {
       console.log('Created Docs : ', docs);
+      return docs;
     }
   });
 };
