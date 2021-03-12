@@ -9,6 +9,7 @@ const categoriesRouter = require('./resources/categories/categories.router');
 const messagesRouter = require('./resources/messages/messages.router');
 const notificationsRouter = require('./resources/notifications/notifications.router');
 const productsRouter = require('./resources/products/products.router');
+const photosRouter = require('./resources/photos/photos.router');
 const tagsRouter = require('./resources/tags/tags.router');
 const usersRouter = require('./resources/users/users.router');
 
@@ -30,6 +31,7 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/messages', messagesRouter);
 app.use('/api/notifications', notificationsRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/photos', photosRouter);
 app.use('/api/tags', tagsRouter);
 app.use('/api/users', usersRouter);
 
