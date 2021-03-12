@@ -84,8 +84,8 @@ const getAllSubcategoriesByCategory = async (id) => {
   return await Subcategory.find({categories_id: id})
 }
 
-const getOneSubcategory = async (id) => {
-  let query = { _id: id };
+const getOneSubcategory = async (subcategory_id) => {
+  let query = { _id: subcategory_id };
   return await Subcategory.findOne(query);
 };
 

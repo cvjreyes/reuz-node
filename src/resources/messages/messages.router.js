@@ -11,7 +11,7 @@ router
   .put(messagesController.updateMessage)
   .delete(messagesController.removeMessage)
 
-router.route('/threadmessages').post(messagesController.createThreadmessage);
+router.route('/all/threadmessages').get(messagesController.getAllThreadmessages).post(messagesController.createThreadmessage);
 router.route('/:id/threadmessages').get(messagesController.getAllThreadmessagesByMessage);
 
 router
@@ -19,5 +19,6 @@ router
   .get(messagesController.getOneThreadmessage)
   .put(messagesController.updateThreadmessage)
   .delete(messagesController.removeThreadmessage);
+
 
 module.exports = router;

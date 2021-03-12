@@ -53,7 +53,7 @@ const categoryModel = require('./categories.model');
 
 
   const getOneSubcategory = async (req, res) => {
-    const subcategory = await subcategoryModel.getOneSubcategories(req.params.id);
+    const subcategory = await subcategoryModel.getOneSubcategory(req.params.subcategory_id);
     if (subcategory) {
       return res.status(200).json(subcategory);
     }

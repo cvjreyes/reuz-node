@@ -49,6 +49,16 @@ const getOneMessage = async (id) => {
   return await Message.findOne(query);
 };
 
+const getBySender = async (sender_users_id) => {
+  let query = { sender_users_id: sender_users_id };
+  return await Message.find(query);
+}
+
+const getByReceiver = async (receiver_users_id) => {
+  let query = { receiver_users_id: receiver_users_id };
+  return await Message.find(query);
+}
+
 const updateMessage = (id, updatedmessage) => {
   let query = { _id: id };
   Message.updateOne(query, updatedmessage, function (err, docs) {
@@ -71,6 +81,7 @@ const removeMessage = (id) => {
   });
 };
 
+
 //Threadmessages's methods
 const createThreadmessage = (message) => {
   Threadmessage.create(message, function (err, docs) {
@@ -87,9 +98,11 @@ const getAllThreadmessages = async () => {
 };
 
 const getAllThreadmessagesByMessage = async (id) => {
-  const subcats = await Threadmessage.find({messages_id: id});
+  const threadmessage = await Threadmessage.find({messages_id: id});
+  console.log(threadmessage, {messages_id: id})
   return await Threadmessage.find({messages_id: id})
 }
+
 
 const getOneThreadmessage = async (id) => {
   let query = { _id: id };
@@ -122,6 +135,8 @@ module.exports = {
   createMessage,
   getAllMessages,
   getOneMessage,
+  getBySender,
+  getByReceiver,
   updateMessage,
   removeMessage,
   createThreadmessage,

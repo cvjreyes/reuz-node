@@ -27,9 +27,7 @@ app.disable('x-powered-by');
 
 app.use('/', authRouter);
 app.use('/api/categories', categoriesRouter);
-app.use('/api/categories/subcategories', categoriesRouter);
 app.use('/api/messages', messagesRouter);
-app.use('/api/messages/threadmessages', messagesRouter);
 app.use('/api/notifications', notificationsRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/tags', tagsRouter);

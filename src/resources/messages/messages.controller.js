@@ -2,12 +2,28 @@ const messageModel = require('./messages.model');
 
 //Messages
 const getAllMessages = async (req, res) => {
-    const messages = await messageModel.all();
+    const messages = await messageModel.getAllMessages();
     return res.status(200).json(messages);
   };
   
+  const getMessagesBySender = async (req, res) => {
+
+    const userId = req.params.userId;
+    const filteredMessages = await messageModel.getBySender(userId);
+    return res.status(200).json(filteredMessages);
+  
+  };
+
+  const getMessagesByReceiver = async (req, res) => {
+
+    const userId = req.params.userId;
+    const filteredMessages = await messageModel.getByReceiver(userId);
+    return res.status(200).json(filteredMessages);
+  
+  };
+  
   const getOneMessage = async (req, res) => {
-    const message = await messageModel.get(req.params.id);
+    const message = await messageModel.getOneMessage(req.params.id);
     if (message) {
       return res.status(200).json(message);
     }
@@ -17,7 +33,7 @@ const getAllMessages = async (req, res) => {
   
   const createMessage = (req, res) => {
     const newmessage = req.body;
-    const messagesUpdated = messageModel.create(newmessage);
+    const messagesUpdated = messageModel.createMessage(newmessage);
     return res.status(201).json(messagesUpdated);
   };
   
@@ -32,19 +48,23 @@ const getAllMessages = async (req, res) => {
     return res.status(200).json(messagesWithoutTheDeleted);
   };
 
+  const threadmessageModel = require('./messages.model');
+
   //Threadmessages
   const getAllThreadmessages = async (req, res) => {
-    const messages = await messageModel.all();
+    const messages = await messageModel.getAllThreadmessages();
     return res.status(200).json(messages);
   };
 
   const getAllThreadmessagesByMessage = async (req, res) => {
+    console.log(req.params.id)
     const threadmessages = await threadmessageModel.getAllThreadmessagesByMessage(req.params.id);
     return res.status(200).json(threadmessages);
   };
+
   
   const getOneThreadmessage = async (req, res) => {
-    const message = await messageModel.get(req.params.id);
+    const message = await messageModel.getOneThreadmessage(req.params.id);
     if (message) {
       return res.status(200).json(message);
     }
@@ -54,7 +74,7 @@ const getAllMessages = async (req, res) => {
   
   const createThreadmessage = (req, res) => {
     const newmessage = req.body;
-    const messagesUpdated = messageModel.create(newmessage);
+    const messagesUpdated = messageModel.createThreadmessage(newmessage);
     return res.status(201).json(messagesUpdated);
   };
   
@@ -73,6 +93,8 @@ const getAllMessages = async (req, res) => {
     createMessage,
     updateMessage,
     getAllMessages,
+    getMessagesBySender,
+    getMessagesByReceiver,
     getOneMessage,
     removeMessage,
     createThreadmessage,
