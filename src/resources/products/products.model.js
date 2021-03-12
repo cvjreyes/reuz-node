@@ -5,6 +5,7 @@ const productModelSchema = mongoose.Schema({
     name: String,
     description: String,
     urlImage:String,
+    address:String,
     created_at: mongoose.Schema.Types.Date,
     updated_at: mongoose.Schema.Types.Date,
     price: Number,

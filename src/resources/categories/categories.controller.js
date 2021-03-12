@@ -13,7 +13,7 @@ const categoryModel = require('./categories.model');
   };
   
   const getOneCategory = async (req, res) => {
-    const category = await categoryModel.getOneCategories(req.params.id);
+    const category = await categoryModel.getOneCategory(req.params.id);
     if (category) {
       return res.status(200).json(category);
     }

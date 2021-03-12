@@ -42,6 +42,7 @@ const getAll = async (req, res) => {
       }else{
         const newproduct = {... payload, created_at:creationDate, updated_at:creationDate};
         const productsUpdated = productModel.create(newproduct);
+        console.log(productsUpdated);
         return res.status(201).json(productsUpdated);
       }
     };
