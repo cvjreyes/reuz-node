@@ -1,4 +1,14 @@
-const mongoose = require('mongoose');
+const express = require('express'),
+    mongoose = require('mongoose'),
+    multer = require('multer'),
+    app = express(),
+    upload = multer(),
+    port = 5001,
+    Schema = mongoose.Schema,
+    cors = require('cors');
+
+app.use(cors());
+
 
 // Define model schema
 const photoModelSchema = mongoose.Schema({
@@ -31,6 +41,12 @@ const getAll = async () => {
 const getOne = async (id) => {
   let query = { _id: id };
   return await Photo.findOne(query);
+};
+
+const getProductPhotos = async (product) => {
+  let query = { phophoto_product_id: product };
+  const photos =  await Photo.find(query);
+  return photos;
 };
 
 const update = (id, updatedphoto) => {
@@ -68,4 +84,5 @@ module.exports = {
   update,
   remove,
   getByProduct,
+  getProductPhotos,
 };

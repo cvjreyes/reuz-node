@@ -1,5 +1,29 @@
 const photoModel = require('./photos.model');
 
+const uploadPhoto = async (req, res) => {
+  const imgToUpload = await photoModel.createPhoto({
+      photo: req.file.buffer,
+      user: req.params.userId,
+      name: req.file.name,
+      size: req.file.size,
+      mimetype: req.file.mimetype,
+  });
+
+  const photos = await photoModel.getUserPhotos(req.params.userId);
+
+
+  // Iterate over each image to convert the buffer array into a base64 string
+  all = photos.map((photo) => {
+      return {
+          image: photo.photo.toString('base64'),
+          id: photo._id
+      };
+  });
+  console.log(all.length);
+
+  return res.status(200).json(all);
+};
+
 const getAll = async (req, res) => {
     const photos = await photoModel.getAll();
     return res.status(200).json(photos);
@@ -47,4 +71,6 @@ const getAll = async (req, res) => {
     getPhotosByProduct,
     getOne,
     remove,
-  };
+    uploadPhoto,
+  
+};
