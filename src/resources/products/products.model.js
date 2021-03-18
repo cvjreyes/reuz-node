@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 // Define model schema
 const productModelSchema = mongoose.Schema({
   name: String,
@@ -32,25 +31,14 @@ const productModelSchema = mongoose.Schema({
     ref: 'SubcategoryModel',
   },
 });
-
 // Compile model from schema
 const Product = mongoose.model('ProductModel', productModelSchema);
-
-const create = (product) => {
-  Product.create(product, function (err, docs) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Created Docs : ', docs);
-      return docs;
-    }
-  });
+const create = async (product) => {
+  return await Product.create(product);
 };
-
 const getAll = async () => {
   return await Product.find();
 };
-
 const getOne = async (id) => {
   let query = { _id: id };
   return await Product.findOne(query)
@@ -58,7 +46,6 @@ const getOne = async (id) => {
     .populate('product_category_id')
     .populate('product_subcategory_id');
 };
-
 const update = (id, updatedproduct) => {
   let query = { _id: id };
   Product.updateOne(query, updatedproduct, function (err, docs) {
@@ -69,7 +56,6 @@ const update = (id, updatedproduct) => {
     }
   });
 };
-
 const remove = (id) => {
   let query = { _id: id };
   Product.deleteOne(query, function (err, docs) {
@@ -80,22 +66,18 @@ const remove = (id) => {
     }
   });
 };
-
 const getByCategory = async (product_category_id) => {
   let query = { product_category_id: product_category_id };
   return await Product.find(query);
 }
-
 const getBySubcategory = async (product_subcategory_id) => {
   let query = { product_subcategory_id: product_subcategory_id };
   return await Product.find(query);
 }
-
 const getByUser = async (users_id) => {
   let query = { users_id: users_id };
   return await Product.find(query);
 }
-
 module.exports = {
   create,
   getAll,

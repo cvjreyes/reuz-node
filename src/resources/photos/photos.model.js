@@ -3,12 +3,18 @@ const mongoose = require('mongoose');
 // Define model schema
 const photoModelSchema = mongoose.Schema({
     photoArray: mongoose.Schema.Types.Array,
-    photo_product_id: [
+    photo_product_id: 
       {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'ProductModel',
-      }
-    ],
+      },
+      
+    photo: mongoose.Schema.Types.Buffer,
+    name: mongoose.Schema.Types.String,
+    size: mongoose.Schema.Types.Number,
+    mimetype: mongoose.Schema.Types.String,
+    updated: mongoose.Schema.Types.Date,
+    created: mongoose.Schema.Types.Date,
   });
 
 // Compile model from schema
@@ -61,6 +67,22 @@ const getByProduct = async (photo_products_id) => {
 }
 
 
+const createPhoto = async (photo) => {
+    const picture = await Photo.create(photo);
+    return picture;
+};
+const getProductPhotos = async (product) => {
+    let query = {photo_product_id:product };
+    const pictures =  await Photo.find(query);
+    return pictures;
+};
+const removePhoto = async (photoId) => {
+    let query = { _id: photoId };
+     await Photo.deleteOne(query);
+};
+
+
+
 module.exports = {
   create,
   getAll,
@@ -68,4 +90,8 @@ module.exports = {
   update,
   remove,
   getByProduct,
+  createPhoto,
+  getProductPhotos,
+  removePhoto,
+  Photo,
 };
