@@ -14,7 +14,7 @@ router
   
   router
   .route('/:productId/photos')
-  .post(upload.single('photo'),photosController.uploadPhoto)
+  .post(photosController.uploadPhoto)
   .get(photosController.getByProduct)
 
   router
