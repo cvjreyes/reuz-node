@@ -48,7 +48,7 @@ const getAll = async (req, res) => {
         size: req.file.size,
         mimetype: req.file.mimetype,
     });
-    const photos = await photoModel.getUserPhotos(req.params.productId);
+    const photos = await photoModel.getProductPhotos(req.params.productId);
     // Iterate over each image to convert the buffer array into a base64 string
     all = photos.map((photo) => {
         return {
